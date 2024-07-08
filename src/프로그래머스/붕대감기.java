@@ -36,10 +36,6 @@ public class 붕대감기 {
                 if(answer > health) answer = health;
             }
 
-
-            // 5초가 되면
-
-
             time++;
         }
 
@@ -91,8 +87,6 @@ public class Solution {
                 if(answer <= 0) return -1;
             }
         }
-
-
 
         return answer;
     }
