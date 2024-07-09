@@ -1,18 +1,18 @@
-## Getting Started
+## 🐬 코테 문제 알고리즘 스터디 <br>
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+<br>
 
-## Folder Structure
+### 🖇️ 인프런을 통해 나는 복습으로 빠르게 매주 2문제 풀기.
+<br>
 
-The workspace contains two folders by default, where:
+### 🖇️ 프로그래머스 (매주 2문제)
+- 🖊️ [프로그래머스 문제 풀이](https://school.programmers.co.kr/learn/challenges?order=recent&statuses=unsolved%2Csolved&levels=1%2C2%2C3%2C4&languages=java&partIds=56388%2C56389%2C58464%2C37527%2C31236%2C25448%2C21366%2C20069%2C17214%2C12286%2C9317%2C22586%2C18498%2C17931%2C300%2C301%2C17615%2C6174%2C18952%2C21163%2C23708%2C6173%2C22941%2C49441%2C49442%2C44139%2C33882)
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+<br>
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+### 🖇️ 백준 매주 최소 1문제.
+- 🖊️ [정답률이 높은 것들 위주로](집에서 추가)
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+<br>
 
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+### 🖇️ Commit Detail에 뭐 때문에 못 풀었고 어떻게 해결했는지 풀이 과정 적기.
