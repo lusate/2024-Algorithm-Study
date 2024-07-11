@@ -11,7 +11,7 @@
 <br>
 
 ### 🖇️ 백준 매주 최소 1문제.
-- 🖊️ [정답률이 높은 것들 위주로](집에서 추가)
+- 🖊️ [정답률이 높은 것들 위주로 풀기](https://github.com/tony9402/baekjoon/tree/main/data_structure)
 
 <br>
 
