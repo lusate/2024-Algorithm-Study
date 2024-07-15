@@ -8,8 +8,8 @@ import java.util.StringTokenizer;
 
 public class 바이러스 {
     static int n, m, answer = 0;
-    static boolean[] visit = new boolean[101];
-    static int[][] computer = new int[101][101];
+    static boolean[] visit;
+    static int[][] computer;
 
     public static void dfs(int x){
         visit[x] = true;
@@ -24,9 +24,12 @@ public class 바이러스 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
-
         n = Integer.parseInt(br.readLine());
         m = Integer.parseInt(br.readLine());
+
+        visit = new boolean[n+1];
+        computer = new int[n+1][n+1];
+
 
         for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
