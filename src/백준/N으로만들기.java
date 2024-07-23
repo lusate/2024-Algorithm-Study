@@ -14,26 +14,23 @@ public class N으로만들기 {
             set.add(path);
             return;
         }
-
-        // 왼쪽 붙이기 가능.
         if (lt - 1 >= 0) {
-            dfs(lt - 1, rt, arr[lt - 1] + s, path + " " + arr[lt - 1] + s);
+            dfs(lt-1, rt, arr[lt-1]+s, path + " " + arr[lt-1] + s);
         }
-        // 오른쪽 붙이기 가능.
-        if(rt + 1 < arr.length){
-            dfs(lt, rt + 1, s + arr[rt + 1], path + " " + s + arr[rt + 1]);
+        if (rt + 1 < arr.length) {
+            dfs(lt, rt+1, s + arr[rt+1], path + " " + s + arr[rt+1]);
         }
     }
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-
         arr = st.nextToken().toCharArray();
         set = new HashSet<>();
+
         for (int i = 0; i < arr.length; i++) {
             dfs(i, i, String.valueOf(arr[i]), String.valueOf(arr[i]));
         }
-//        System.out.println("set = " + set);
+
 
         System.out.println(set.size());
     }
