@@ -1,44 +1,92 @@
 import com.sun.tools.javac.Main;
 
 import java.util.*;
-public class Solution {
-    int[] dis={-1, 1, 5};
-    int[] ch;
-    public int solution(int s, int e){
-        Queue<Integer> Q = new LinkedList<>();
-        ch = new int[10001];
-        Q.offer(s);
-        ch[s] = 1;
-        int L=0;
-        while(!Q.isEmpty()){
-            int len = Q.size(); //처음에 L(레벨) 은 1이다. -> 원소 1개.
-            for(int i=0; i<len; i++){
-                int x = Q.poll(); //각 레벨의 원소
-                for(int j=0; j<3; j++){ // 가는 게 1, -1, 5로 3개이기 때문
-                    int nx = x + dis[j]; //nx : x의 자식노드
-                    if(nx == e) return L+1; // 송아지를 찾을 때
-                    //+1 을 해주는 이유는 nx로 이동하고 난 상태이므로 레벨이 1부터 시작이기 때문이다.
-
-                    //처음에 x는 5, dis[j]는 -1, 1, 5
-                    if(nx>=1 && nx <= 10000 && ch[nx] == 0){ //ch[nx] == 0 은 방문하지 않았다는 의미
-                        //nx가 음수로 갈 수도 있으므로 범위 정해줌. 1~10000으로 범위를 벗어나면 안된다.
-                        ch[nx] = 1;
-                        Q.offer(nx);
-                    }
+class Edge implements Comparable<Edge>{
+    public int vex, cost;
+    Edge(int vex, int cost){
+        this.vex = vex;
+        this.cost = cost;
+    }
+    @Override
+    public int compareTo(Edge ob){
+        return this.cost - ob.cost;
+    }
+}
+class Solution{
+    // static ArrayList<Edge>[] graph; 다른 이중 ArrayList 방식
+    static ArrayList<ArrayList<Edge>> graph;
+    static int[] dis;
+    static int n,m;
+    public void solution(int v){
+        PriorityQueue<Edge> pQ = new PriorityQueue<>();
+        pQ.offer(new Edge(v, 0));
+        dis[v] = 0;
+        while(!pQ.isEmpty()){
+            Edge tmp = pQ.poll();
+            int now = tmp.vex;
+            int nowCost = tmp.cost;
+            if(nowCost > dis[now]) continue; // 가중치가 최소가 되지 않으므로 continue
+            // for(Edge ob : graph[now]){
+            for(Edge ob : graph.get(now)){
+                if(dis[ob.vex] > nowCost + ob.cost){
+                    dis[ob.vex] = nowCost + ob.cost;
+                    pQ.offer(new Edge(ob.vex, nowCost+ob.cost));
                 }
             }
-            L++;
         }
-        return 0;
     }
     public static void main(String[] args){
         Solution T = new Solution();
-        System.out.println(T.solution(5, 14));
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        m = sc.nextInt();
+
+        graph = new ArrayList<ArrayList<Edge>>();
+        for(int i=0; i<=n; i++){
+            graph.add(new ArrayList<Edge>());
+        }
+        // graph = new ArrayList[m];
+        // for (int i = 0; i <= n; i++) {
+        //     graph[i] = new ArrayList<>();
+        // }
+
+        dis = new int[n+1];
+        Arrays.fill(dis, Integer.MAX_VALUE);
+        for(int i=0; i<m; i++){
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            int c = sc.nextInt();
+            graph.get(a).add(new Edge(b, c));
+            // graph[a].add(new Edge(b, c));
+        }
+
+        T.solution(1);
+        for(int i=2; i<=n; i++){
+            if(dis[i] != Integer.MAX_VALUE) System.out.println(i + " : " + dis[i]);
+            else System.out.println(i + " : impossible");
+        }
     }
 }
 
 
+/* 입력
+6 9
+1 2 12
+1 3 4
+2 1 2
+2 3 5
+2 5 5
+3 4 5
+4 2 2
+4 5 5
+6 4 5
+*/
 
+/* 출력
+2 : 11
+3 : 4
+4 : 9
+5 : 14
+6 : impossible
+*/
 
-
-//3
