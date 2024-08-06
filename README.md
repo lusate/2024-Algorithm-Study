@@ -13,7 +13,7 @@
 ### 🖇️ 백준 매주 최소 1문제.
 - 🖊️ [정답률이 높은 것들 위주로 풀기](https://github.com/tony9402/baekjoon/tree/main/data_structure)
 
-- 자바 2차원 배열 입력 방법1 (띄어쓰기 없이 숫자들이 모두 붙어있을 때)
+**자바 2차원 배열 입력 방법1 (띄어쓰기 없이 숫자들이 모두 붙어있을 때)**
 ```java
 for (int i = 0; i < M; i++) {
     String s = br.readLine();
@@ -23,7 +23,9 @@ for (int i = 0; i < M; i++) {
 }
 ```
 
-- 자바 2차원 배열 입력 방법2 (띄어쓰기 없이 문자들이 모두 붙어있을 때)
+<br>
+
+**자바 2차원 배열 입력 방법2 (띄어쓰기 없이 문자들이 모두 붙어있을 때)**
 ```java
 map = new char[N][M];
 for (int i = 0; i < N; i++) {
@@ -38,7 +40,9 @@ for (int i = 0; i < N; i++) {
 }
 ```
 
-- 자바 2차원 배열 입력 방법3 (띄어쓰기 있이 숫자들이 모두 떨어져있을 때)
+<br>
+
+**자바 2차원 배열 입력 방법3 (띄어쓰기 있이 숫자들이 모두 떨어져있을 때)**
 ```java
 for (int i = 0; i < N; i++) {
     st = new StringTokenizer(br.readLine());
@@ -48,13 +52,17 @@ for (int i = 0; i < N; i++) {
 }
 ```
 
-- 자바 1차원 배열 입력 방법1 (띄어쓰기 없이 문자들이 모두 붙어있을 때)
+<br>
+
+**자바 1차원 배열 입력 방법1 (띄어쓰기 없이 문자들이 모두 붙어있을 때)**
 ```java
 StringTokenizer st = new StringTokenizer(br.readLine());
 arr = st.nextToken().toCharArray();
 ```
 
-- 자바 1차원 배열 입력 방법2 (띄어쓰기 있이 문자들이 모두 떨어져있을 때)
+<br>
+
+**자바 1차원 배열 입력 방법2 (띄어쓰기 있이 문자들이 모두 떨어져있을 때)**
 ```java
 st = new StringTokenizer(br.readLine());
 for (int i=0; i<C; i++) {
