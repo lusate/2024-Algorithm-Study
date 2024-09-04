@@ -1,92 +1,38 @@
-import com.sun.tools.javac.Main;
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
-class Edge implements Comparable<Edge>{
-    public int vex, cost;
-    Edge(int vex, int cost){
-        this.vex = vex;
-        this.cost = cost;
-    }
-    @Override
-    public int compareTo(Edge ob){
-        return this.cost - ob.cost;
-    }
-}
-class Solution{
-    // static ArrayList<Edge>[] graph; 다른 이중 ArrayList 방식
-    static ArrayList<ArrayList<Edge>> graph;
-    static int[] dis;
-    static int n,m;
-    public void solution(int v){
-        PriorityQueue<Edge> pQ = new PriorityQueue<>();
-        pQ.offer(new Edge(v, 0));
-        dis[v] = 0;
-        while(!pQ.isEmpty()){
-            Edge tmp = pQ.poll();
-            int now = tmp.vex;
-            int nowCost = tmp.cost;
-            if(nowCost > dis[now]) continue; // 가중치가 최소가 되지 않으므로 continue
-            // for(Edge ob : graph[now]){
-            for(Edge ob : graph.get(now)){
-                if(dis[ob.vex] > nowCost + ob.cost){
-                    dis[ob.vex] = nowCost + ob.cost;
-                    pQ.offer(new Edge(ob.vex, nowCost+ob.cost));
-                }
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String[] tmp = reader.readLine().split(" ");
+        String s = tmp[0];
+        String e = tmp[1];
+        String q = tmp[2];
+        String input;
+        HashSet<String> enterMap = new HashSet<>();
+        HashSet<String> outMap = new HashSet<>();
+
+        while((input = reader.readLine()) != null){
+            String[] member = input.split(" ");
+
+            // s(개강 총회 시작 시간) - temp[0] (입장 등록 시간)을 해서 양수면 출석 완료
+            if(s.compareTo(member[0]) >= 0){
+                enterMap.add(member[1]);
+            }
+            // 퇴장 완료
+            else if(e.compareTo(member[0]) <= 0 && q.compareTo(member[0]) >= 0){
+                outMap.add(member[1]);
             }
         }
-    }
-    public static void main(String[] args){
-        Solution T = new Solution();
-        Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
-        m = sc.nextInt();
 
-        graph = new ArrayList<ArrayList<Edge>>();
-        for(int i=0; i<=n; i++){
-            graph.add(new ArrayList<Edge>());
+        int answer = 0;
+        for(String str : enterMap){
+            if(outMap.contains(str)){
+                answer++;
+            }
         }
-        // graph = new ArrayList[m];
-        // for (int i = 0; i <= n; i++) {
-        //     graph[i] = new ArrayList<>();
-        // }
-
-        dis = new int[n+1];
-        Arrays.fill(dis, Integer.MAX_VALUE);
-        for(int i=0; i<m; i++){
-            int a = sc.nextInt();
-            int b = sc.nextInt();
-            int c = sc.nextInt();
-            graph.get(a).add(new Edge(b, c));
-            // graph[a].add(new Edge(b, c));
-        }
-
-        T.solution(1);
-        for(int i=2; i<=n; i++){
-            if(dis[i] != Integer.MAX_VALUE) System.out.println(i + " : " + dis[i]);
-            else System.out.println(i + " : impossible");
-        }
+        System.out.println(answer);
     }
 }
-
-
-/* 입력
-6 9
-1 2 12
-1 3 4
-2 1 2
-2 3 5
-2 5 5
-3 4 5
-4 2 2
-4 5 5
-6 4 5
-*/
-
-/* 출력
-2 : 11
-3 : 4
-4 : 9
-5 : 14
-6 : impossible
-*/
-
