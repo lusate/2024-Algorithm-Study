@@ -72,4 +72,14 @@ for (int i=0; i<C; i++) {
 
 <br>
 
+**자바 1차원 배열 입력 방법3 (띄어쓰기 있이 숫자들이 모두 떨어져있을 때)**
+```java
+st = new StringTokenizer(br.readLine());
+for (int i = 0; i < n; i++) {
+    arr[i] = Integer.parseInt(st.nextToken());
+}
+```
+
+<br>
+
 ### 🖇️ Commit Detail에 뭐 때문에 못 풀었고 어떻게 해결했는지 풀이 과정 적기.
