@@ -82,4 +82,21 @@ for (int i = 0; i < n; i++) {
 
 <br>
 
+### 🖇️몰랐던 함수 적기
+- 날짜 비교하는 방법
+  - ```java
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    LocalDateTime dt1 = LocalDateTime.parse(startTime, formatter);
+    LocalDateTime dt2 = LocalDateTime.parse(endTime, formatter);
+  
+    Duration duration = Duration.between(dt1, dt2);
+    ```
+  - 단, Duration 클래스는 시간 단위가 초와 나노초 밖에 없습니다. 따라서 시간 계산이 필요합니다.
+  - Period는 Years, Months, Days가 가능합니다.
+  
+- PriorityQueue에서 peek는 class에서 오름/내림차순으로 정의한 우선 순위를 나타냄.
+- 리스트 내 요소 중복 체크는 Set으로 중복 여부를 확인할 수 있지만 Stream을 통해서도 가능 -> `arr.stream().distinct().count()`
+
+<br>
+
 ### 🖇️ Commit Detail에 뭐 때문에 못 풀었고 어떻게 해결했는지 풀이 과정 적기.
