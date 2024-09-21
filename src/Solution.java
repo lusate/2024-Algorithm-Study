@@ -1,45 +1,83 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
 
 public class Solution {
+    static StringBuilder sb = new StringBuilder();
+    static String AC(String command, String[] nList, int size) {
+        int start = 0, end = size-1;
+        boolean isR = false;
+        for(int i=0; i<command.length(); i++) {
+            if(command.charAt(i) == 'R') {
+                isR = !isR;
+            }
+            else if(command.charAt(i) == 'D') {
+                if (start > end) {
+                    sb.append("error\n");
+                    return sb.toString();
+                }
+                else{
+                    if (isR) end--;
+                    else start++;
+                }
+            }
+//            switch(command.charAt(i)) {
+//                case 'R':
+//                    isR = !isR;
+//                    break;
+//                case 'D':
+//                    if(start > end){
+//                        sb.append("error\n");
+//                        return sb.toString();
+//                    }
+//                    else {
+//                        if(isR)
+//                            end--;
+//                        else
+//                            start++;
+//                    }
+//            }
+        }
+
+        sb.append("[");
+        if(isR) {
+            for(int i=end; i>=start; i--) {
+                sb.append(nList[i]);
+                if(i != start)
+                    sb.append(",");
+            }
+        }
+        else {
+            for(int i=start; i<=end; i++) {
+                sb.append(nList[i]);
+                if(i != end)
+                    sb.append(",");
+            }
+        }
+        sb.append("]\n");
+        return sb.toString();
+    }
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int N = Integer.parseInt(st.nextToken());
-        int d = Integer.parseInt(st.nextToken());
-        int k = Integer.parseInt(st.nextToken());
-        int c = Integer.parseInt(st.nextToken());
+        int tC = Integer.parseInt(br.readLine());
 
-        int[] arr = new int[N];
-        int[] check = new int[d + 1];
-        for (int i = 0; i < N; i++) {
-            st = new StringTokenizer(br.readLine());
-            arr[i] = Integer.parseInt(st.nextToken());
+        String command;
+        String input;
+        String[] nList;
+        int size;
+
+        while(tC-- > 0) {
+            command = br.readLine();
+            size = Integer.parseInt(br.readLine());
+            input = br.readLine();
+            nList = input.substring(1, input.length()-1).split(",");
+
+            AC(command, nList, size);
         }
 
-        int total = 0, max = 0;
-        for (int i = 0; i < k; i++) {
-            if(check[arr[i]] == 0) total++;
-            check[arr[i]]++;
-        }
-        max = total;
-
-        for (int i = 1; i < N; i++) {
-            if (max <= total) {
-                if (check[c] == 0) {
-                    max = total + 1;
-                } else max = total;
-            }
-
-            check[arr[i - 1]]--;
-            if(check[arr[i-1]] == 0) total--;
-
-            if (check[arr[(i + k - 1) % N]] == 0) total++;
-            check[arr[(i + k - 1) % N]]++;
-        }
+        System.out.println(sb.toString());
     }
 }
 
