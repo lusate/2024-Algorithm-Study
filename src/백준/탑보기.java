@@ -67,11 +67,11 @@ public class 탑보기 {
                 else{ // 현재 건물보다 높은 건물이 이미 있었던 경우 가장 가까운 높은 건물의 인덱스가 cur[1]로 저장되어 있음
 
                     // 두 건물 간의 거리를 비교
-                    int prevdis = Math.abs(i - cur[1]); // 현재 저장된 가장 가까운 높은 건물과 현재 건물 간의 거리
-                    int nowdis = Math.abs(i - tmp[0]); // 스택의 가장 위에 있는 높은 건물과 현재 건물 간의 거리
+                    int prevdis = Math.abs(i - cur[1]); // 현재 건물 i와 이전에 저장된 가장 가까운 높은 건물 간의 거리
+                    int nowdis = Math.abs(i - tmp[0]); // 현재 건물 i와 스택의 최상단 건물(높은 건물) 간의 거리입니다.
 
-                    if(nowdis < prevdis){ // 이전 건물이 더 높다면
-                        cur[1] = tmp[0]; // 새로운 높은 건물이 혀내 건물에 더 가까운 경우
+                    if(nowdis < prevdis){
+                        cur[1] = tmp[0]; // 현재 건물과 새로운 높은 건물 간의 거리가 더 짧으면 cur[1]에 새로운 높은 건물의 인덱스 tmp[0]를 저장
                     }
                 }
             }
