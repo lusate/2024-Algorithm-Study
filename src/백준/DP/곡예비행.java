@@ -1,10 +1,9 @@
-package 백준;
+package 백준.DP;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
-import java.util.jar.JarEntry;
 
 public class 곡예비행 {
     public static void main(String[] args) throws IOException {
