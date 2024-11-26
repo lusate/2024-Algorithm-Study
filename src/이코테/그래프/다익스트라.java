@@ -6,11 +6,11 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 class Node implements Comparable<Node> {
-    int idx;
+    int vex;
     int cost;
 
-    Node(int idx, int cost) {
-        this.idx = idx;
+    Node(int vex, int cost) {
+        this.vex = vex;
         this.cost = cost;
     }
 
@@ -18,7 +18,8 @@ class Node implements Comparable<Node> {
     @Override
     public int compareTo(Node o) {
         if (this.cost < o.cost) {
-            return -1;
+            return -1; // 오름차순
+            // return this.cost - o.cost 하는 것과 같음
         }
         return 1;
     }
@@ -36,16 +37,18 @@ public class 다익스트라 {
 
         while(!pq.isEmpty()) {
             Node tmp = pq.poll();
-            int now = tmp.idx;
+            int now = tmp.vex;
             int nowCost = tmp.cost;
 
-            if(d[now] < nowCost) continue; // 현재 노드가 이미 처리된 적이 있는 노드라면 무시
+            // 현재 노드가 이미 처리된 적이 있는 노드라면 무시
+            // 현재 노드 now 까지의 비용 nowCost 가 이미 기록된 최단 거리 dis[now] 보다 크면 무시하고 다음 노드로 넘어감
+            if(d[now] < nowCost) continue;
 
             // 현재 연결된 노드와 다른 인접한 노드들을 확인
             for (Node ob : graph.get(now)) {
-                if (d[ob.idx] > nowCost + ob.cost) {
-                    d[ob.idx] = nowCost + ob.cost;
-                    pq.offer(new Node(ob.idx, nowCost + ob.cost));
+                if (d[ob.vex] > nowCost + ob.cost) {
+                    d[ob.vex] = nowCost + ob.cost;
+                    pq.offer(new Node(ob.vex, nowCost + ob.cost));
                 }
             }
         }
