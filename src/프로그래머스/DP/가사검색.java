@@ -1,4 +1,4 @@
-package 이코테.이분탐색;
+package 프로그래머스.DP;
 
 import java.util.ArrayList;
 import java.util.Arrays;
